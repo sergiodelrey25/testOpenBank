@@ -61,16 +61,7 @@
 Tenemos diferentes salas que se identifican cada una con id diferente (long incremental) y en cada sala debemos poder guardar usuarios.  
 Una sala podrá tener N usuarios y un usuario podrá estar en una única sala. Cuando se guarda el usuario en la sala, se valida contra una api externa para chequear si el dni es válido y  
 se le asignara un id (long incremental) retornando como respuesta el id del usuario guardado.
-
-2.1 el json de ejemplo que debemos guardar:
-
-    {  
-	    "userName": "pablo",  
-	     "email" : "email@email.com",  
-	    "phone": "677998899"  
-	    "rol": "admin"  
-	    "dni": "23454234W"  
-     }  
+ 
 
 
 3. Requisitos
@@ -86,10 +77,19 @@ se le asignara un id (long incremental) retornando como respuesta el id del usua
 
 - Retornar el id
 
-4. Métodos a implementar
+  4. Métodos a implementar
 
-   - Método POST para guardar un usuario el usario dentro de una sala  retornado un id
-   - Método GET donde obtendremos el usuario en base al id del usuario obtenido
+     - Método POST para guardar un usuario el usario dentro de una sala  retornado un id
+       - el json de ejemplo que debemos guardar:
+
+               {  
+                   "name": "pablo",  
+                    "email" : "email@email.com",  
+                   "phone": "677998899"  
+                   "rol": "admin"  
+                   "dni": "23454234W"  
+                } 
+     - Método GET donde obtendremos el usuario en base al id del usuario obtenido
 
 
 5. Condiciones a tener en cuenta opcionales  
