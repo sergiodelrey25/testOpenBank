@@ -20,39 +20,39 @@
    - postgres con la base de datos   
    - mock-server con una api expuesta en el puerto 1080
 
-
-
->                  api check-dni:   
->                       method: PATCH  
->     				     url: http//localhost:1080/check-dni
->  						 body:                  
->						    {  
->      						"dni": <dni>"
->							 } 
->						reponse:                   
->					     ok -> http: 200 para cualquier dni  
->
-	>     				 ko -> http: 409 que sea 99999999w               
->
->                    api notification:   
->                       method: post  
->                       url: http//localhost:1080/email  
->                           body:                   
->                              {  
->     							       "email": <email>, 
->										"message": <msg>
-	>								 } 
->							reponse:                   
->									   ok -> http: 200  
->                        method: post  
-	>      				   url: http//localhost:1080/sms
-	>						   body:                
-	>							      {  
-	>     							 "phone": <phone>,
-	>					    			 "message": <msg>
-	>							      } 
-	>							reponse:     
-	>               			  ok -> http: 200
+   
+   
+         api check-dni:   
+              method: PATCH  
+                url: http//localhost:1080/check-dni
+                body:                  
+                   {  
+                   "dni": <dni>"
+                    } 
+               reponse:                   
+                ok - http: 200 para cualquier dni  
+   
+                ko - http: 409 que sea 99999999w               
+   
+           api notification:   
+              method: post  
+              url: http//localhost:1080/email  
+                  body:                   
+                     {  
+                              "email": <email, 
+                               "message": <msg
+                            } 
+                   reponse:                   
+                              ok - http: 200  
+               method: post  
+                  url: http//localhost:1080/sms
+                      body:                
+                             {  
+                            "phone": <phone,
+                                "message": <msg
+                             } 
+                       reponse:     
+                     ok - http: 200
 
 
 
