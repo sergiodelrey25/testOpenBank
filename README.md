@@ -66,25 +66,24 @@ se le asignara un id (long incremental) retornando como respuesta el id del usua
 
 3. Requisitos
 
-- userName: no deberá de contener más de 6 caracteres
+- name: no deberá de contener más de 6 caracteres
 - email: deberá de contener un @ y un .
-- el rol podrá ser admin o superadmin
+- El rol podrá ser admin o superadmin
 - Si el usuario existe por email deberemos de mandar una exception.
--  chequear el dni contra una api externa expuesta en el mock-server
+- Chequear el dni contra una api externa expuesta en el mock-server
 - Cuando se guarde el usuario correctamente en la base de datos se notificará en base al rol:
-   - admin -> un email con texto: "usuario guardado"
-   -	superadmin -> en sms con texto "usuario guardado"
-
-- Retornar el id
+- admin -> un email con texto: "usuario guardado"
+-	superadmin -> en sms con texto "usuario guardado"
+- Retornar el id generado
 
   4. Métodos a implementar
 
-     - Método POST para guardar un usuario el usario dentro de una sala  retornado un id
+     - Método POST para guardar un usuario dentro de una sala  retornado un id
        - el json de ejemplo que debemos guardar:
 
                {  
                    "name": "pablo",  
-                    "email" : "email@email.com",  
+                   "email" : "email@email.com",  
                    "phone": "677998899"  
                    "rol": "admin"  
                    "dni": "23454234W"  
@@ -93,7 +92,7 @@ se le asignara un id (long incremental) retornando como respuesta el id del usua
 
 
 5. Condiciones a tener en cuenta opcionales  
-   La aplicación podrá escalara futuro pudiendo añadir diferentes contextos: pagos, pedidos....  
+   La aplicación podrá escalar a futuro pudiendo añadir diferentes contextos: pagos, pedidos....  
    La aplicación podrá recibir 1 o millones de peticiones. (no hace falta implementar nada de kubernetes)
 
 7. Respuesta de la API  
@@ -124,10 +123,12 @@ se le asignara un id (long incremental) retornando como respuesta el id del usua
                  } 
 
 
-
 8. Cosas que se valoran.
 
    - test: unitarios, integración y aceptación
    - arquitectura e implementación
    - uso de spring y capación de abtracción del framework.
    - patrones de diseño
+
+9. Método de entrega
+   Se deberá de entrar en un repositorio público personal con todos los commit realizado en la rama main.
