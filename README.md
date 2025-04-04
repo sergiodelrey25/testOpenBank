@@ -131,4 +131,5 @@ se le asignara un id (long incremental) retornando como respuesta el id del usua
    - patrones de diseño
 
 9. Método de entrega
+
    Se deberá de entrar en un repositorio público personal con todos los commit realizado en la rama main.
