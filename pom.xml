@@ -34,6 +34,10 @@
       <artifactId>flyway-core</artifactId>
       <!-- Spring Boot maneja la versión automáticamente, pero puedes especificarla -->
     </dependency>
+    <dependency>
+    <groupId>jakarta.validation</groupId>
+    <artifactId>jakarta.validation-api</artifactId>
+</dependency>
     <!-- Lombok (opcional) -->
     <dependency>
       <groupId>org.projectlombok</groupId>
