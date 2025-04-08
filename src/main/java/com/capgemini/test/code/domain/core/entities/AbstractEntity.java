@@ -11,17 +11,19 @@ import jakarta.validation.Validator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@MappedSuperclass
 public abstract class AbstractEntity<E> {
 	private static final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
-	//Long incremental que representa el id se genera de forma incremental
+	// Long incremental que representa el id se genera de forma incremental
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long id;	
-	
+	private Long id;
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -30,7 +32,7 @@ public abstract class AbstractEntity<E> {
 	@JsonIgnore
 	@SuppressWarnings("unchecked")
 	public Set<ConstraintViolation<E>> getErrors() {
-		return validator.validate((E)this);
+		return validator.validate((E) this);
 	}
 
 	@JsonIgnore
@@ -40,10 +42,14 @@ public abstract class AbstractEntity<E> {
 		if (lst.isEmpty())
 			return null;
 		Map<String, String> errors = new HashMap<>();
-		lst.stream().sorted((a,b)->(a.getPropertyPath().toString() + ":" + a.getMessage()).compareTo(b.getPropertyPath().toString() + ":" + b.getMessage()))
-			.forEach(item -> errors.put(item.getPropertyPath().toString(), 
-					(errors.containsKey(item.getPropertyPath().toString()) ? errors.get(item.getPropertyPath().toString()) + ", " : "") 
-					+ item.getMessage()));
+		lst.stream()
+				.sorted((a, b) -> (a.getPropertyPath().toString() + ":" + a.getMessage())
+						.compareTo(b.getPropertyPath().toString() + ":" + b.getMessage()))
+				.forEach(item -> errors.put(item.getPropertyPath().toString(),
+						(errors.containsKey(item.getPropertyPath().toString())
+								? errors.get(item.getPropertyPath().toString()) + ", "
+								: "")
+								+ item.getMessage()));
 		return errors;
 	}
 

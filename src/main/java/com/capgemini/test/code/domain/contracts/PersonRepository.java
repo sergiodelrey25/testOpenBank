@@ -4,6 +4,6 @@ import org.springframework.data.repository.Repository;
 
 import com.capgemini.test.code.domain.entities.Person;
 
-public interface PersonRepository extends Repository<Person, Long>{
+public interface PersonRepository extends Repository<Person, Long> {
 
 }
