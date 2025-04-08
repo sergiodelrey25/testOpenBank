@@ -50,6 +50,7 @@ public class PersonController {
     public ResponseEntity<Object> create(@Valid @RequestBody UserCreateDTO item)
             throws BadRequestException, DuplicateKeyException, InvalidDataException {
         var newItem = srv.add(UserCreateDTO.from(item));
+        newItem.sendNotification();
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(newItem.getId())
