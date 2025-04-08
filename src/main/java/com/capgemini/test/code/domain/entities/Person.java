@@ -3,6 +3,7 @@ package com.capgemini.test.code.domain.entities;
 import com.capgemini.test.code.domain.core.entities.AbstractEntity;
 import com.capgemini.test.code.domain.entities.roles.Role;
 import com.capgemini.test.code.domain.entities.roles.RoleConverter;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
@@ -22,6 +23,7 @@ public class Person extends AbstractEntity<Person> {
     // Debe contener un @ y un .
     @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "El email no es válido")
     private String email;
+    private String dni;
     private String phone;
     // Este atributo NO se persiste sin convertirlo a String
     @Convert(converter = RoleConverter.class)
@@ -29,6 +31,7 @@ public class Person extends AbstractEntity<Person> {
     // Relación con la clase Room
     @ManyToOne
     @JoinColumn(name = "room_id", referencedColumnName = "id", foreignKey = @jakarta.persistence.ForeignKey(name = "fk_room"), nullable = true)
+    @JsonManagedReference
     private Room room;
 
     public String getName() {
@@ -63,16 +66,40 @@ public class Person extends AbstractEntity<Person> {
         this.phone = phone;
     }
 
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
     public Person() {
         super();
     }
 
-    public Person(String name, String email, Role role, String phone) {
+    public Person(String name, String email, Role role, String phone, String dni) {
         super();
         this.name = name;
         this.email = email;
         this.role = role;
         this.phone = phone;
+        this.dni = dni;
+        this.id = generateId(); // Ensure id is initialized
+    }
+
+    private Long generateId() {
+        return System.currentTimeMillis(); // Example id generation logic
+    }
+
+    public Person(Long id, String name, String email, Role role, String phone, String dni) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.role = role;
+        this.phone = phone;
+        this.dni = dni;
     }
 
     public Room getRoom() {
@@ -81,6 +108,10 @@ public class Person extends AbstractEntity<Person> {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public void sendNotification() {
+        this.role.sendNotification(this);
     }
 
 }

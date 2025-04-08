@@ -10,6 +10,7 @@ CREATE TABLE users (
     name VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
     phone VARCHAR(15) UNIQUE NOT NULL,
+    dni VARCHAR(15) UNIQUE NOT NULL,
     role VARCHAR(50) NOT NULL,
     room_id INTEGER,
     CONSTRAINT fk_room FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE SET NULL
@@ -18,6 +19,6 @@ CREATE TABLE users (
 -- Insertar datos iniciales
 INSERT INTO rooms (name) VALUES ('Sala 1'), ('Sala 2');
 
-INSERT INTO users (name, email, phone, role, room_id) VALUES
-('Juan Pérez', 'juan@example.com','telefono_juan', 'ADMIN', 1),
-('María López', 'maria@example.com', 'telefono_maria', 'USER', 2);
+INSERT INTO users (name, email, phone, dni, role, room_id) VALUES
+('Juan Pérez', 'juan@example.com','telefono_juan', 'dni_juan', 'ADMIN', 1),
+('María López', 'maria@example.com', 'telefono_maria', 'dni_maria', 'USER', 2);

@@ -17,8 +17,8 @@ public abstract class AbstractEntity<E> {
 
 	// Long incremental que representa el id se genera de forma incremental
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	protected Long id;
 
 	public Long getId() {
 		return id;
