@@ -33,7 +33,6 @@
       <groupId>org.flywaydb</groupId>
       <artifactId>flyway-core</artifactId>
       <!-- Spring Boot maneja la versión automáticamente, pero puedes especificarla -->
-      <version>${flyway.version}</version>
     </dependency>
     <!-- Lombok (opcional) -->
     <dependency>
