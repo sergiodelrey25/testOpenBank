@@ -1,6 +1,7 @@
 package com.capgemini.test.code.domain.entities;
 
 import com.capgemini.test.code.domain.core.entities.AbstractEntity;
+import com.capgemini.test.code.domain.entities.roles.Notification;
 import com.capgemini.test.code.domain.entities.roles.Role;
 import com.capgemini.test.code.domain.entities.roles.RoleConverter;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -110,8 +111,8 @@ public class Person extends AbstractEntity<Person> {
         this.room = room;
     }
 
-    public void sendNotification() {
-        this.role.sendNotification(this);
+    public Notification getNotification() {
+        return this.role.getNotification(this);
     }
 
 }

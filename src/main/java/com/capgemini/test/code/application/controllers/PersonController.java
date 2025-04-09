@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.capgemini.test.code.domain.contracts.services.PersonService;
+import com.capgemini.test.code.domain.entities.Person;
 import com.capgemini.test.code.domain.entities.models.UserCreateDTO;
 import com.capgemini.test.code.domain.entities.models.UserDisplayDTO;
 import com.capgemini.test.code.exceptions.BadRequestException;
@@ -50,11 +51,13 @@ public class PersonController {
     public ResponseEntity<Object> create(@Valid @RequestBody UserCreateDTO item)
             throws BadRequestException, DuplicateKeyException, InvalidDataException {
         var newItem = srv.add(UserCreateDTO.from(item));
-        newItem.sendNotification();
+        // VALIDACIONES
+        // NOTIFICACIONES
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(newItem.getId())
                 .toUri();
         return ResponseEntity.created(location).build();
     }
+
 }

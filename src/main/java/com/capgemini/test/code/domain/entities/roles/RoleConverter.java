@@ -22,6 +22,8 @@ public class RoleConverter implements AttributeConverter<Role, String> {
             case "USER":
                 return new Admin();
             case "ADMIN":
+                return new Admin();
+            case "SUPERADMIN":
                 return new SuperAdmin();
             default:
                 throw new IllegalArgumentException("Unknown role: " + dbData);

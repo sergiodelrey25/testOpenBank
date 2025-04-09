@@ -1,5 +1,8 @@
 package com.capgemini.test.code.domain.services;
 
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +42,9 @@ public class PersonServiceImpl implements PersonService {
         if (item.isInvalid()) {
             throw new InvalidDataException(item.getErrorsMessage(), item.getErrorsFields());
         }
-        return repo.insert(item);
+        var aux = repo.insert(item);
+        sendNotification(item);
+        return aux;
     }
 
     @Override
@@ -60,4 +65,28 @@ public class PersonServiceImpl implements PersonService {
         throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
     }
 
+    private void sendNotification(Person newItem) {
+        try {
+            URL url = new URL(newItem.getNotification().getUrl());
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+            String jsonInputString = newItem.getNotification().getBody();
+
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonInputString.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            int responseCode = connection.getResponseCode();
+            System.out.println("Response Code : " + responseCode);
+            System.out.println("For petition: " + newItem.getNotification().getUrl());
+            if (responseCode != HttpURLConnection.HTTP_OK) {
+                throw new RuntimeException("Failed : HTTP error code : " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
