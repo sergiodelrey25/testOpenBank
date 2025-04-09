@@ -1,4 +1,4 @@
-package com.capgemini.test.code.domain.entities.models;
+package com.capgemini.test.code.infrastructure.models;
 
 import com.capgemini.test.code.domain.entities.Person;
 import com.capgemini.test.code.domain.entities.roles.Role;

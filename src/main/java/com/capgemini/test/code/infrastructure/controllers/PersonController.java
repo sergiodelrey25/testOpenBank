@@ -1,4 +1,4 @@
-package com.capgemini.test.code.application.controllers;
+package com.capgemini.test.code.infrastructure.controllers;
 
 import java.net.URI;
 import java.util.Map;
@@ -14,12 +14,12 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.capgemini.test.code.domain.contracts.services.PersonService;
 import com.capgemini.test.code.domain.contracts.services.RoomService;
-import com.capgemini.test.code.domain.entities.models.UserCreateDTO;
-import com.capgemini.test.code.domain.entities.models.UserDisplayDTO;
 import com.capgemini.test.code.exceptions.BadRequestException;
 import com.capgemini.test.code.exceptions.DuplicateKeyException;
 import com.capgemini.test.code.exceptions.InvalidDataException;
 import com.capgemini.test.code.exceptions.NotFoundException;
+import com.capgemini.test.code.infrastructure.models.UserCreateDTO;
+import com.capgemini.test.code.infrastructure.models.UserDisplayDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -38,33 +38,15 @@ public class PersonController {
         this.roomSrv = roomSrv;
     }
 
-    @GetMapping(path = "{id}")
+    @GetMapping(path = "{id}/{roomId}")
     @Operation(summary = "Obtiene un usuario a partir de su id")
-    public UserDisplayDTO getOne(@PathVariable Long id) throws NotFoundException {
+    // Dentro de una sala
+    public UserDisplayDTO getOne(@PathVariable Long id, @PathVariable Long roomId) throws NotFoundException {
         var item = srv.getOne(id);
         if (item.isEmpty()) {
             throw new NotFoundException("User not found");
         }
         return UserDisplayDTO.from(item.get());
-    }
-
-    @PostMapping
-    @ApiResponse(responseCode = "201", description = "Usuario creado")
-    @Operation(summary = "Crea un usuario")
-    public ResponseEntity<Object> create(@Valid @RequestBody UserCreateDTO item)
-            throws BadRequestException, DuplicateKeyException, InvalidDataException {
-        var newItem = srv.add(UserCreateDTO.from(item));
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(newItem.getId())
-                .toUri();
-
-        // Cuerpo con el ID
-        Map<String, Object> responseBody = Map.of("id", newItem.getId());
-
-        return ResponseEntity
-                .created(location) // HTTP 201 con header Location
-                .body(responseBody);
     }
 
     @PostMapping("{roomId}")

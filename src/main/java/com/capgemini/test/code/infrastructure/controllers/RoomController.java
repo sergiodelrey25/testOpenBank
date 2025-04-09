@@ -1,4 +1,4 @@
-package com.capgemini.test.code.application.controllers;
+package com.capgemini.test.code.infrastructure.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
