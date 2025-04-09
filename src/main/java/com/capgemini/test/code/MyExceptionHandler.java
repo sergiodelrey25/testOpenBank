@@ -44,6 +44,9 @@ public class MyExceptionHandler {
     @ExceptionHandler(InvalidDataException.class)
     public ResponseEntity<ErrorResponse> handleInvalidDataException(InvalidDataException ex) {
         String joinedFields = String.join(" | ", ex.getErrors().keySet());
+        if (joinedFields.isEmpty()) {
+            joinedFields = ex.getMessage();
+        }
         String message = "error validation <" + joinedFields + ">";
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(new ErrorResponse(409, message));

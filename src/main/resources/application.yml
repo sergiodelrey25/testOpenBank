@@ -25,3 +25,7 @@ springdoc:
 external:
   service:
     url: http://localhost:1080
+
+feign:
+  okhttp:
+    enabled: true
