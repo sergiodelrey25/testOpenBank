@@ -1,5 +1,6 @@
 package com.capgemini.test.code.domain.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.capgemini.test.code.domain.core.entities.AbstractEntity;
@@ -13,7 +14,7 @@ import jakarta.persistence.Table;
 public class Room extends AbstractEntity<Room> {
     private String name;
     @OneToMany(mappedBy = "room")
-    private List<Person> persons;
+    private List<Person> persons = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -30,7 +31,6 @@ public class Room extends AbstractEntity<Room> {
     public Room(String name) {
         super();
         this.name = name;
-        this.persons = persons;
     }
 
     public List<Person> getPersons() {
