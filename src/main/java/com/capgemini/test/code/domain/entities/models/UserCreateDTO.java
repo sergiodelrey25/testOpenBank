@@ -5,8 +5,6 @@ import com.capgemini.test.code.domain.entities.roles.Role;
 import com.capgemini.test.code.domain.entities.roles.RoleConverter;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Convert;
-import jakarta.validation.constraints.Pattern;
 
 public class UserCreateDTO {
     @Schema(description = "Nombre del usuario", example = "José", required = true)

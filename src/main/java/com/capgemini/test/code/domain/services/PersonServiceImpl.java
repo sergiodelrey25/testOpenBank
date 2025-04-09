@@ -2,16 +2,10 @@ package com.capgemini.test.code.domain.services;
 
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.URI;
 import java.net.URL;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

@@ -1,9 +1,5 @@
 package com.capgemini.test.code.domain.entities.roles;
 
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 import com.capgemini.test.code.domain.entities.Person;
 
 public class SuperAdmin implements Role {

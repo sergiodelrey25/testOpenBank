@@ -14,7 +14,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.capgemini.test.code.domain.contracts.services.PersonService;
 import com.capgemini.test.code.domain.contracts.services.RoomService;
-import com.capgemini.test.code.domain.entities.Person;
 import com.capgemini.test.code.domain.entities.models.UserCreateDTO;
 import com.capgemini.test.code.domain.entities.models.UserDisplayDTO;
 import com.capgemini.test.code.exceptions.BadRequestException;

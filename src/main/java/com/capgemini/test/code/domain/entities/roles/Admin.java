@@ -1,9 +1,6 @@
 package com.capgemini.test.code.domain.entities.roles;
 
 import com.capgemini.test.code.domain.entities.Person;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.io.OutputStream;
 
 public class Admin implements Role {
 
