@@ -38,13 +38,20 @@ public class PersonController {
         this.roomSrv = roomSrv;
     }
 
-    @GetMapping(path = "{id}/{roomId}")
-    @Operation(summary = "Obtiene un usuario a partir de su id")
+    @GetMapping(path = "{roomId}/{id}")
+    @Operation(summary = "Obtiene un usuario en una sala a partir de su id")
     // Dentro de una sala
-    public UserDisplayDTO getOne(@PathVariable Long id, @PathVariable Long roomId) throws NotFoundException {
+    public UserDisplayDTO getOne(@PathVariable Long roomId, @PathVariable Long id) throws NotFoundException {
+        var room = roomSrv.getOne(roomId);
+        if (room.isEmpty()) {
+            throw new NotFoundException("Room not found");
+        }
         var item = srv.getOne(id);
         if (item.isEmpty()) {
             throw new NotFoundException("User not found");
+        }
+        if (!item.get().getRoom().getId().equals(roomId)) {
+            throw new NotFoundException("User with id " + id + " was not found in room " + roomId);
         }
         return UserDisplayDTO.from(item.get());
     }
