@@ -1,4 +1,4 @@
-package com.capgemini.test.code;
+package com.capgemini.test.code.hexagonal;
 
 import java.util.TreeMap;
 

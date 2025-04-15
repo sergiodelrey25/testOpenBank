@@ -1,6 +1,6 @@
 package com.capgemini.test.code.hexagonal.domain.model.role;
 
-import com.capgemini.test.code.domain.entities.Person;
+import com.capgemini.test.code.hexagonal.domain.model.User;
 
 public class Admin implements Role {
 
@@ -9,8 +9,8 @@ public class Admin implements Role {
     // Simulación de un correo electrónico
 
     @Override
-    public Notification getNotification(Person to) {
-        String email = to.getEmail();
+    public Notification getNotification(User to) {
+        String email = to.getEmail().getValue();
         String message = "Usuario guardado.";
         String jsonInputString = String.format("{\"email\": \"%s\", \"message\": \"%s\"}", email, message);
         return new Notification(url, jsonInputString);

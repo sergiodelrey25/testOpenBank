@@ -2,9 +2,13 @@ package com.capgemini.test.code.hexagonal.usecase.find;
 
 import java.util.Optional;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import com.capgemini.test.code.hexagonal.domain.model.User;
 import com.capgemini.test.code.hexagonal.domain.repository.RoomRepositoryPort;
 
+@Service
 public class FindUserInRoomInteractor implements IFindUserInRoomInteractor {
 
     private final RoomRepositoryPort roomRepositoryAdapter;
@@ -15,7 +19,7 @@ public class FindUserInRoomInteractor implements IFindUserInRoomInteractor {
 
     @Override
     public Optional<FindUserOutput> findUserInRoom(Long roomId, Long userId) {
-        return mapToOutput(roomRepositoryAdapter.getUserInRoom(roomId, userId));
+        return mapToOutput((roomRepositoryAdapter.getUserInRoom(roomId, userId)));
     }
 
     private Optional<FindUserOutput> mapToOutput(Optional<User> optionalUser) {

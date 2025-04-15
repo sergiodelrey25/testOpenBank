@@ -1,6 +1,9 @@
 package com.capgemini.test.code.hexagonal.infrastructure.db.postgres.adapter;
 
+import java.lang.StackWalker.Option;
 import java.util.Optional;
+
+import org.springframework.stereotype.Component;
 
 import com.capgemini.test.code.hexagonal.domain.model.User;
 import com.capgemini.test.code.hexagonal.domain.repository.RoomRepositoryPort;
@@ -11,6 +14,7 @@ import com.capgemini.test.code.hexagonal.infrastructure.db.postgres.repository.R
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
+@Component
 public class RoomRepositoryAdapter implements RoomRepositoryPort {
 
     private final RoomJpaRepository roomJpaRepository;
@@ -22,7 +26,7 @@ public class RoomRepositoryAdapter implements RoomRepositoryPort {
             UserEntity user = userEntity.get();
             return Optional.ofNullable(UserMapper.fromEntityToDomain(user));
         }
-        return null;
+        return Optional.empty();
     }
 
     @Override

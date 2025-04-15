@@ -8,11 +8,13 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "rooms")
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class RoomEntity extends AbstractEntity<RoomEntity> {
     private String name;
     @OneToMany(mappedBy = "room")

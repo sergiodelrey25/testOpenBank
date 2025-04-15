@@ -12,13 +12,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/rooms")
+@RequestMapping("/api/hexagonal/")
 @Tag(name = "room-service", description = "Room management")
 @RequiredArgsConstructor
 public class RoomController {
-    private IFindUserInRoomInteractor findUserInRoomInteractor;
+    private final IFindUserInRoomInteractor findUserInRoomInteractor;
 
-    @GetMapping(path = "{roomId}/{id}")
+    @GetMapping(path = "room/{roomId}/user/{userId}")
     @Operation(summary = "Obtiene un usuario en una sala a partir de su id")
     // Dentro de una sala
     public FindUserOutput getUserInRoom(@PathVariable Long roomId, @PathVariable Long userId) throws NotFoundException {
