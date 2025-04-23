@@ -6,10 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.capgemini.test.code.exceptions.BadRequestException;
-import com.capgemini.test.code.exceptions.DuplicateKeyException;
-import com.capgemini.test.code.exceptions.InvalidDataException;
-import com.capgemini.test.code.exceptions.NotFoundException;
+import com.capgemini.test.code.hexagonal.exceptions.BadRequestException;
+import com.capgemini.test.code.hexagonal.exceptions.DuplicateKeyException;
+import com.capgemini.test.code.hexagonal.exceptions.InvalidDataException;
+import com.capgemini.test.code.hexagonal.exceptions.NotFoundException;
 
 @RestControllerAdvice
 public class MyExceptionHandler {

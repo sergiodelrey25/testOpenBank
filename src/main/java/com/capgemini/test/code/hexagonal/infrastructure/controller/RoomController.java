@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.capgemini.test.code.exceptions.NotFoundException;
+import com.capgemini.test.code.hexagonal.exceptions.InvalidDataException;
 import com.capgemini.test.code.hexagonal.usecase.create.ICreateUserInRoomInteractor;
 import com.capgemini.test.code.hexagonal.usecase.find.IFindUserInRoomInteractor;
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,7 +35,8 @@ public class RoomController {
     }
 
     @PostMapping("room/{roomId}/user")
-    public UserDisplay createUserInRoom(@Valid @RequestBody UserCreate item, @PathVariable Long roomId) {
+    public UserDisplay createUserInRoom(@Valid @RequestBody UserCreate item, @PathVariable Long roomId)
+            throws InvalidDataException {
         Long generatedId = createUserInRoomInteractor.createUserInRoom(roomId, UserMapper.toCreateUserInput(item));
 
         return UserMapper.toUserDisplay(generatedId);
