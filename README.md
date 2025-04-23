@@ -6,7 +6,7 @@
 
 ## Descripción de la solución
 La solución se basa en un backend hecho en Java, con Spring. Cuenta con dos endpoints (los pedidos según el enunciado). Una vez lanzada la aplicación, se puede consultar la documentación de la API Rest desde la ruta raíz. Para ver cómo lanzar la aplicación ver [Guía](#cómo-lanzar-la-aplicación).
-Aparte del código propio del backend, también se pueden encontrar distintas pruebas:
+Aparte del código propio del backend, también se pueden encontrar distintas pruebas (no se encuentran disponibles tras la refactorización del código):
 - [Tests unitarios](https://github.com/sergiodelrey25/testOpenBank/tree/master/src/test/java/com/capgemini/test/code/entities)
 - [Tests de integración](https://github.com/sergiodelrey25/testOpenBank/tree/master/src/test/java/com/capgemini/test/code/services)
 - [Tests de aceptación](https://github.com/sergiodelrey25/testOpenBank/tree/master/src/test/java/com/capgemini/test/code/acceptance)
