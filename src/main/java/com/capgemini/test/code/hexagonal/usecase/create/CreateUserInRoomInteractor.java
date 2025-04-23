@@ -1,8 +1,9 @@
 package com.capgemini.test.code.hexagonal.usecase.create;
 
+import org.springframework.stereotype.Service;
+
 import com.capgemini.test.code.hexagonal.domain.model.DNI;
 import com.capgemini.test.code.hexagonal.domain.model.Email;
-import com.capgemini.test.code.hexagonal.domain.model.ID;
 import com.capgemini.test.code.hexagonal.domain.model.Name;
 import com.capgemini.test.code.hexagonal.domain.model.Phone;
 import com.capgemini.test.code.hexagonal.domain.model.User;
@@ -11,6 +12,7 @@ import com.capgemini.test.code.hexagonal.domain.model.role.Role;
 import com.capgemini.test.code.hexagonal.domain.model.role.SuperAdmin;
 import com.capgemini.test.code.hexagonal.domain.repository.RoomRepositoryPort;
 
+@Service
 public class CreateUserInRoomInteractor implements ICreateUserInRoomInteractor {
     private final RoomRepositoryPort roomRepositoryAdapter;
 
@@ -19,15 +21,13 @@ public class CreateUserInRoomInteractor implements ICreateUserInRoomInteractor {
     }
 
     @Override
-    public void createUserInRoom(String roomId, CreateUserInput user) {
-
-        roomRepositoryAdapter.saveUserInRoom(roomId, mapToUser(user));
+    public Long createUserInRoom(Long roomId, CreateUserInput user) {
+        return roomRepositoryAdapter.saveUserInRoom(roomId, mapToUser(user));
     }
 
     private User mapToUser(CreateUserInput user) {
         Role role = mapToRole(user.getRole());
         return new User(
-                new ID(user.getId()),
                 new Email(user.getEmail()),
                 new Name(user.getName()),
                 new DNI(user.getDni()),

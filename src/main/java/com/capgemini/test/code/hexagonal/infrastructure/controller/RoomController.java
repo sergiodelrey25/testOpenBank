@@ -5,11 +5,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.capgemini.test.code.exceptions.NotFoundException;
-import com.capgemini.test.code.hexagonal.usecase.find.FindUserOutput;
+import com.capgemini.test.code.hexagonal.usecase.create.ICreateUserInRoomInteractor;
 import com.capgemini.test.code.hexagonal.usecase.find.IFindUserInRoomInteractor;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/hexagonal/")
@@ -17,17 +20,24 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RoomController {
     private final IFindUserInRoomInteractor findUserInRoomInteractor;
+    private final ICreateUserInRoomInteractor createUserInRoomInteractor;
 
     @GetMapping(path = "room/{roomId}/user/{userId}")
     @Operation(summary = "Obtiene un usuario en una sala a partir de su id")
-    // Dentro de una sala
-    public FindUserOutput getUserInRoom(@PathVariable Long roomId, @PathVariable Long userId) throws NotFoundException {
+    public UserDetails getUserInRoom(@PathVariable Long roomId, @PathVariable Long userId) throws NotFoundException {
         var user = findUserInRoomInteractor.findUserInRoom(roomId, userId);
         if (user.isEmpty()) {
             throw new NotFoundException("User not found");
         }
-        return user.get();
+        return UserMapper.toUserDetails(user.get());
 
+    }
+
+    @PostMapping("room/{roomId}/user")
+    public UserDisplay createUserInRoom(@Valid @RequestBody UserCreate item, @PathVariable Long roomId) {
+        Long generatedId = createUserInRoomInteractor.createUserInRoom(roomId, UserMapper.toCreateUserInput(item));
+
+        return UserMapper.toUserDisplay(generatedId);
     }
 
     // @PostMapping("{roomId}")

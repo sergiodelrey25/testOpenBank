@@ -2,7 +2,6 @@ package com.capgemini.test.code.hexagonal.usecase.find;
 
 import java.util.Optional;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.test.code.hexagonal.domain.model.User;

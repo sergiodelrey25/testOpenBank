@@ -14,4 +14,8 @@ public interface RoomJpaRepository extends JpaRepository<RoomEntity, Long> {
     @Query("SELECT u FROM RoomEntity r JOIN r.users u WHERE r.id = :roomId AND u.id = :userId")
     Optional<UserEntity> findUserInRoom(@Param("roomId") Long roomId, @Param("userId") Long userId);
 
+    // Guardar nuevo Usuario dentro de la sala
+    @Query("INSERT INTO RoomEntity r (r.id, r.users) VALUES (:roomId, :userEntity)")
+    void saveUserInRoom(@Param("roomId") Long roomId, @Param("userEntity") UserEntity userEntity);
+
 }

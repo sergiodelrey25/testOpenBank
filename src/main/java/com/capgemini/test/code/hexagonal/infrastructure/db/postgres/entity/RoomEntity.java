@@ -3,6 +3,7 @@ package com.capgemini.test.code.hexagonal.infrastructure.db.postgres.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -17,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RoomEntity extends AbstractEntity<RoomEntity> {
     private String name;
-    @OneToMany(mappedBy = "room")
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserEntity> users = new ArrayList<>();
 
     public void addUser(UserEntity user) {

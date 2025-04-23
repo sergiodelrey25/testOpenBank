@@ -30,4 +30,13 @@ public class UserEntity extends AbstractEntity<UserEntity> {
         this.room = roomEntity;
     }
 
+    public UserEntity(String name, String email, String dni, String phone, String role) {
+        this();
+        this.name = name;
+        this.email = email;
+        this.dni = dni;
+        this.phone = phone;
+        this.role = role;
+    }
+
 }

@@ -24,8 +24,12 @@ public class UserMapper {
     }
 
     public static UserEntity fromDomainToEntity(User domain) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'fromDomainToEntity'");
+        return new UserEntity(
+                domain.getName().getValue(),
+                domain.getEmail().getValue(),
+                domain.getDni().getValue(),
+                domain.getPhone().getValue(),
+                domain.getRole().getName());
     }
 
     private static Role mapToRole(String role) {
